@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello world example</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      section {
+        align-items: center;
+        background-image: linear-gradient(black, gray);
+        color: #FFF;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        margin-bottom: 100vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <h1
+        class="js-parallaxis"
+        data-start="0"
+        data-end="200"
+        data-opacity-start="1"
+        data-opacity-end="0"
+        data-translatey-start="0"
+        data-translatey-end="100"
+      >
+        Hello world
+      </h1>
+    </section>
+
+    <script src="../../dist/parallaxis.min.js"></script>
+    <script>parallaxis()</script>
+  </body>
+</html>

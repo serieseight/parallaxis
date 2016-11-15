@@ -1,0 +1,7 @@
+.gitignore
+.travis.yml
+rollup.config.js
+src/
+yarn.error
+yarn.lock
+yarn-error.log
