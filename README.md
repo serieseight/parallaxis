@@ -18,6 +18,7 @@ hope of not totally killing performance.
 - `opacity`
 - `translateX`
 - `translateY`
+- `scale`
 
 For best performance try to only use Parallaxis on one or
 two elements per page, and avoid using on mobile completely.
@@ -164,6 +165,23 @@ will result in `transform: translateY()` style updates.
   data-end="200"
   data-translatey-start="0"
   data-translatey-end="200"
+>
+  Hello world
+</h1>
+```
+
+#### scale
+
+Defining `data-scale-start` **and** `data-scale-end`
+will result in `transform: scale()` style updates.
+
+```html
+<h1
+  class="js-parallaxis"
+  data-start="0"
+  data-end="200"
+  data-scale-start="1"
+  data-scale-end="4"
 >
   Hello world
 </h1>

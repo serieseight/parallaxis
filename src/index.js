@@ -12,10 +12,12 @@ const elements = className => {
     const start = parseInt(el.dataset.start, 10)
     const opacityStart = parseFloat(el.dataset.opacityStart)
     const opacityEnd = parseFloat(el.dataset.opacityEnd)
-    const translateXStart = parseFloat(el.dataset.translatexStart)
-    const translateXEnd = parseFloat(el.dataset.translatexEnd)
-    const translateYStart = parseFloat(el.dataset.translateyStart)
-    const translateYEnd = parseFloat(el.dataset.translateyEnd)
+    const translateXStart = parseInt(el.dataset.translatexStart, 10)
+    const translateXEnd = parseInt(el.dataset.translatexEnd, 10)
+    const translateYStart = parseInt(el.dataset.translateyStart, 10)
+    const translateYEnd = parseInt(el.dataset.translateyEnd, 10)
+    const scaleStart = parseFloat(el.dataset.scaleStart)
+    const scaleEnd = parseFloat(el.dataset.scaleEnd)
     const updates = {}
 
     if (!isNaN(opacityStart) && !isNaN(opacityEnd)) {
@@ -36,6 +38,13 @@ const elements = className => {
       updates.translateY = {
         end: translateYEnd,
         start: translateYStart
+      }
+    }
+
+    if (!isNaN(scaleStart) && !isNaN(scaleEnd)) {
+      updates.scale = {
+        end: scaleEnd,
+        start: scaleStart
       }
     }
 
@@ -108,6 +117,7 @@ const update = els => {
       ) {
         let translateX = 0
         let translateY = 0
+        let scale = 1
 
         const current = limit(start, end, y)
         const i = interval(start, end, current)
@@ -128,7 +138,13 @@ const update = els => {
           translateY = parseInt(interpolate(start, end, i), 10)
         }
 
-        el.style[transformProp] = `translate3d(${translateX}px, ${translateY}px, 0)`
+        if (updates.scale) {
+          const { end, start } = updates.scale
+          scale = interpolate(start, end, i).toFixed(2)
+        }
+
+        el.style[transformProp] =
+          `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`
 
         if (y < start) {
           cache.set(el, 'before')
