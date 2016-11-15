@@ -3,12 +3,12 @@
 A tiny parallax library that updates styles on scroll
 
 - Plain old vanilla JS
-- Just x.xkb gzipped
+- Just 1.6kb gzipped
 
 ## Warning
 
 Parallax works by listening to **every** scroll event.
-Parallaxis is probably the only parallax library that thinks
+*Parallaxis* is probably the only parallax library that thinks
 parallax is a shit show.
 
 This leads to Parallaxis being quite opinionated. It allows
@@ -39,16 +39,15 @@ npm install parallaxis
 ## Usage
 
 ```html
-<section
-  id="hello-world"
+<h1
   class="js-parallaxis"
   data-start="0"
   data-end="200"
   data-opacity-start="1"
   data-opacity-end="0"
 >
-  <h1>Hello world</h1>
-</section>
+  Hello world
+</h1>
 ```
 
 ```js
@@ -59,11 +58,11 @@ parallaxis()
 The above example translates to:
 
 - When `window.scrollY` equals `0` then the `opacity`
-  of `#hello-world` will be `1`.
+  of the `h1` will be `1`.
 - When `window.scrollY` equals `200`, or more, then the
-  `opacity` of `#hello-world` will be `0`.
+  `opacity` of the `h1` will be `0`.
 - When `window.scrollY` is somewhere between `0` and
-  `200` then the `opacity` of `#hello-world` will be
+  `200` then the `opacity` of the `h1` will be
   somewhere between `0` and `1`.
 
 ## Options
@@ -92,11 +91,12 @@ This is the `window.scrollY` position that will be the
 element's update start point.
 
 ```html
-<section
+<h1
   class="js-parallaxis"
   data-start="0"
 >
-</section>
+  Hello world
+</h1>
 ```
 
 #### end
@@ -105,12 +105,13 @@ This is the `window.scrollY` position that will be the
 element's update end point.
 
 ```html
-<section
+<h1
   class="js-parallaxis"
   data-start="0"
   data-end="200"
 >
-</section>
+  Hello world
+</h1>
 ```
 
 ### Optional
@@ -123,14 +124,15 @@ result in `opacity` style updates.
 ##### start
 
 ```html
-<section
+<h1
   class="js-parallaxis"
   data-start="0"
   data-end="200"
   data-opacity-start="1"
   data-opacity-end="0"
 >
-</section>
+  Hello world
+</h1>
 ```
 
 #### translateX
@@ -139,14 +141,15 @@ Defining `data-translatex-start` **and** `data-translatex-end`
 will result in `transform: translateX()` style updates.
 
 ```html
-<section
+<h1
   class="js-parallaxis"
   data-start="0"
   data-end="200"
   data-translatex-start="0"
   data-translatex-end="200"
 >
-</section>
+  Hello world
+</h1>
 ```
 
 #### translateY
@@ -155,14 +158,15 @@ Defining `data-translatey-start` **and** `data-translatey-end`
 will result in `transform: translateY()` style updates.
 
 ```html
-<section
+<h1
   class="js-parallaxis"
   data-start="0"
   data-end="200"
   data-translatey-start="0"
   data-translatey-end="200"
 >
-</section>
+  Hello world
+</h1>
 ```
 
 ## Browser support
