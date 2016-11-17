@@ -5,23 +5,21 @@ A tiny parallax library that updates styles on scroll
 - Plain old vanilla JS
 - Just 1.6kb gzipped
 
-## Warning
+## Be careful out there
 
 Parallax works by listening to **every** scroll event.
-*Parallaxis* is probably the only parallax library that thinks
-parallax is a shit show.
+Now, that's not great, as it can really mess performance up.
 
-This leads to Parallaxis being quite opinionated. It allows
-only a few element styles to be updated on scroll, in the
-hope of not totally killing performance.
+Parallaxis allows only a few of the best performing element
+styles to be updated on scroll.
 
 - `opacity`
 - `translateX`
 - `translateY`
 - `scale`
 
-For best performance try to only use Parallaxis on one or
-two elements per page, and avoid using on mobile completely.
+Still, overuse may kill performance. Especially on low-end
+devices.
 
 ## Examples
 
