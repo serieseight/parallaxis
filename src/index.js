@@ -8,7 +8,7 @@ const elements = className => {
   const els = [ ...document.querySelectorAll(`.${className}`) ]
 
   return els.map(el => {
-    const relative = el.dataset.relative === 'true' ? true : false
+    const relative = el.dataset.relative === 'true'
     const offset = relative ? elY(el) : 0
     const end = parseInt(el.dataset.end, 10)
     const start = parseInt(el.dataset.start, 10)
