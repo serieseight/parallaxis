@@ -8,6 +8,8 @@ const elements = className => {
   const els = [ ...document.querySelectorAll(`.${className}`) ]
 
   return els.map(el => {
+    const relative = el.dataset.relative === 'true' ? true : false
+    const offset = relative ? elY(el) : 0
     const end = parseInt(el.dataset.end, 10)
     const start = parseInt(el.dataset.start, 10)
     const opacityStart = parseFloat(el.dataset.opacityStart)
@@ -56,15 +58,18 @@ const elements = className => {
       return null
     }
 
-    return { el, end, start, updates }
+    return { el, end, offset, relative, start, updates }
   }).filter(x => x)
 }
+
+const elY = el => scrollY() + el.getBoundingClientRect().top
 
 const init = ({ className = 'js-parallaxis' } = {}) => {
   const els = elements(className)
 
   if (els.length) {
     const updateFunc = update(els)
+    updateOffsetsOnResize(els)
     window.addEventListener('scroll', () => raf(updateFunc))
   }
 }
@@ -107,20 +112,22 @@ const update = els => {
   return () => {
     const y = scrollY()
 
-    els.map(({ el, end, start, updates }) => {
+    els.map(({ el, end, offset, start, updates }) => {
+      const s = offset + start
+      const e = offset + end
       const state = cache.get(el)
 
       if (
-        (y >= start && y <= end) ||
-        (state !== 'before' && y < start) ||
-        (state !== 'after' && y > end)
+        (y >= s && y <= e) ||
+        (state !== 'before' && y < s) ||
+        (state !== 'after' && y > e)
       ) {
         let translateX = 0
         let translateY = 0
         let scale = 1
 
-        const current = limit(start, end, y)
-        const i = interval(start, end, current)
+        const current = limit(s, e, y)
+        const i = interval(s, e, current)
 
         if (updates.opacity) {
           const { end, start } = updates.opacity
@@ -146,9 +153,9 @@ const update = els => {
         el.style[transformProp] =
           `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`
 
-        if (y < start) {
+        if (y < s) {
           cache.set(el, 'before')
-        } else if (y > end) {
+        } else if (y > e) {
           cache.set(el, 'after')
         } else {
           cache.set(el, 'during')
@@ -156,6 +163,21 @@ const update = els => {
       }
     })
   }
+}
+
+const updateOffsetsOnResize = els => {
+  const updateOffsets = () => els.map(x => {
+    if (x.relative) {
+      x.offset = elY(x.el)
+    }
+  })
+
+  let d
+
+  window.addEventListener('resize', () => {
+    window.clearTimeout(d)
+    d = window.setTimeout(updateOffsets, 50)
+  })
 }
 
 export default init

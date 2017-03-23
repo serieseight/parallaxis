@@ -3,7 +3,7 @@
 A tiny parallax library that updates styles on scroll
 
 - Plain old vanilla JS
-- Just 1.6kb gzipped
+- Just 1.8kb gzipped
 
 ## Be careful out there
 
@@ -180,6 +180,25 @@ will result in `transform: scale()` style updates.
   data-end="200"
   data-scale-start="1"
   data-scale-end="4"
+>
+  Hello world
+</h1>
+```
+
+#### relative
+
+If `data-relative` is set to `true`, the `data-start`
+and `data-end` attributes will be relative to the
+element, rather than the window.
+
+```html
+<h1
+  class="js-parallaxis"
+  data-relative="true"
+  data-start="-200"
+  data-end="0"
+  data-opacity-start="0"
+  data-opacity-end="1"
 >
   Hello world
 </h1>
