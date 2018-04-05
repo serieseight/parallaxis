@@ -50,7 +50,7 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-uglify": "^1.0.1",
-    "semantic-release": "^6.3.2",
+    "semantic-release": "15.1.5",
     "snazzy": "^6.0.0",
     "standard": "^9.0.2"
   },
