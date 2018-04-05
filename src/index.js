@@ -70,6 +70,7 @@ const init = ({ className = 'js-parallaxis' } = {}) => {
   if (els.length) {
     const updateFunc = update(els)
     updateOffsetsOnResize(els)
+    updateFunc()
     window.addEventListener('scroll', () => raf(updateFunc))
   }
 }
