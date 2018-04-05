@@ -81,9 +81,10 @@
     "fix": "standard --fix",
     "lint": "standard --verbose | snazzy",
     "prepublish": "npm run tidy && npm run build",
+    "semantic-release": "semantic-release",
     "tidy": "rimraf lib dist",
     "test": "exit 0",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "travis-deploy-once": "travis-deploy-once"
   },
   "version": "0.0.0-semantically-released"
 }
